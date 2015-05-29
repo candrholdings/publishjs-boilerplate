@@ -1,0 +1,32 @@
+---
+{
+    "__layout": "default.html",
+    "title": "Home"
+}
+---
+
+--- style
+<style type="text/less">
+img.logo {
+    height: 109px;
+    width: 263px;
+}
+</style>
+---
+
+--- body
+<div id="root"></div>
+---
+
+--- javascript
+<script type="text/jsx">
+!function (Website, React) {
+    'use strict';
+
+    React.render(
+        <h1>Hello, World!</h1>,
+        document.getElementById('root')
+    );
+}(window.Website, window.React);
+</script>
+---

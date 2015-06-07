@@ -18,6 +18,7 @@
     "test": "vows src/test/*-test.js --spec"
   },
   "dependencies": {
+    "commander": "^2.8.1",
     "publishjs": "git:git@github.com:candrholdings/publishjs.git"
   },
   "devDependencies": {

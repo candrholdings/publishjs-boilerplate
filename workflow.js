@@ -1,21 +1,36 @@
+#!/usr/bin/env node
+
 !function (path) {
     'use strict';
 
+    var program = require('commander');
+
+    program
+        .version('0.0.1')
+        .option('-f, --clean', 'Force a clean build, will also clean build on every watch loop')
+        .option('-l, --loop', 'After build, watch for changes and build')
+        .option('-n, --nomin', 'Do not minify CSS, JS and PNG')
+        .option('--nolint', 'Do not run JSHint')
+        .parse(process.argv);
+
     require('publishjs')({
         basedir: path.dirname(module.filename),
-        // clean: true,
+        cacheKey: {
+            nomin: !!program.nomin
+        },
+        clean: program.clean,
         output: 'publish/',
         mixins: [
             require('publishjs-livereload')()
         ],
         processors: {
             assemble: require('publishjs-assemble'),
-            cssmin: require('publishjs-cssmin'),
+            cssmin: program.nomin ? 'noop' : require('publishjs-cssmin'),
             less: require('publishjs-less'),
             jsx: require('publishjs-jsx'),
-            pngout: require('publishjs-pngout'),
+            pngout: program.nomin ? 'noop' : require('publishjs-pngout'),
             jshint: require('publishjs-jshint'),
-            uglify: require('publishjs-uglify')
+            uglify: program.nomin ? 'noop' : require('publishjs-uglify')
         },
         pipes: {
             less: function (pipe, callback) {
@@ -70,7 +85,7 @@
                     .run(callback);
             }
         },
-        watch: true
+        watch: program.loop
     }).build();
 }(
     require('path')

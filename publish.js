@@ -8,10 +8,13 @@
     program
         .version('0.0.1')
         .option('-f, --clean', 'Force a clean build, will also clean build on every watch loop')
-        .option('-l, --loop', 'After build, watch for changes and build')
+        .option('-l, --loop', 'After build, watch for new changes and restart the build')
         .option('-n, --nomin', 'Do not minify CSS, JS and PNG')
+        .option('-r, --livereload', 'Enable LiveReload server, implies --loop')
         .option('--nolint', 'Do not run JSHint')
         .parse(process.argv);
+
+    program.loop = program.livereload || program.loop;
 
     require('publishjs')({
         basedir: path.dirname(module.filename),
@@ -21,7 +24,7 @@
         clean: program.clean,
         output: 'publish/',
         mixins: [
-            require('publishjs-livereload')()
+            program.livereload && require('publishjs-livereload')()
         ],
         processors: {
             assemble: require('publishjs-assemble'),

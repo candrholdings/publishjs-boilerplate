@@ -19,6 +19,7 @@
     require('publishjs')({
         basedir: path.dirname(module.filename),
         cacheKey: {
+            md5: require('crypto').createHash('md5').update(require('fs').readFileSync(module.filename)).digest('base64'),
             nomin: !!program.nomin
         },
         clean: program.clean,
@@ -78,7 +79,7 @@
                     .run(callback);
             },
             'js.lib': function (pipe, callback) {
-                pipe.from('js.lib/')
+                pipe.from(program.nomin ? 'js.lib/' : 'js.lib.min/')
                     .save('js/')
                     .run(callback);
             },

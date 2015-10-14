@@ -62,6 +62,8 @@
                         .assemble()
                         .jsx()
                         .jshint({ expr: true })
+                        .cssmin()
+                        .uglify()
                         .save('./')
                         .run(callback);
                 },

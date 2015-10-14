@@ -1,6 +1,6 @@
 {
   "name": "publishjs-boilerplate",
-  "version": "0.0.1-dev",
+  "version": "0.0.2",
   "description": "Sample website with PublishJS",
   "keywords": [
     "grunt",
@@ -19,15 +19,15 @@
   },
   "dependencies": {
     "commander": "^2.8.1",
-    "publishjs": "*",
-    "publishjs-assemble": "*",
-    "publishjs-cssmin": "*",
-    "publishjs-jshint": "*",
-    "publishjs-jsx": "*",
-    "publishjs-less": "*",
-    "publishjs-livereload": "*",
-    "publishjs-pngout": "*",
-    "publishjs-uglify": "*"
+    "publishjs": "^0.0.2",
+    "publishjs-assemble": "^0.0.2",
+    "publishjs-cssmin": "^0.0.2",
+    "publishjs-jshint": "^0.0.2",
+    "publishjs-jsx": "^0.0.2",
+    "publishjs-less": "^0.0.2",
+    "publishjs-livereload": "^0.0.2",
+    "publishjs-pngout": "^0.0.2",
+    "publishjs-uglify": "^0.0.3"
   },
   "devDependencies": {
     "async": "^1.0.0",
